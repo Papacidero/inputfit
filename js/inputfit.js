@@ -21,13 +21,12 @@
         var originalFontAlignment = $(this).css('text-align');
         var originalFontWeight = $(this).css('font-weight');
         var originalTextTransform = $(this).css('text-transform');
-        var maxWidth = $(this).width() - 5;
+        var maxWidth = $(this).width();
         var maxHeight = $(this).height();
 
         $(this).addClass('inputFit');
-        //$(this).after('<div id="temp" style="width:' + maxWidth + 'px;height:' + maxHeight + 'px;border: 1px solid red; float: left;"><span class="inputFit" style="display:block; border: 1px solid red; float: left;"></span></div>');
-		
-		$(this).after('<span class="inputFit" style="display:none; border: 1px solid red; float: left;"></span>');
+        
+        $(this).after('<span class="inputFit" style="position: absolute; bottom: 0; left: 0; border: 1px solid gray; float: left;"></span>');
 
         $('span.inputFit').css({
             'font-size': originalFontSize,
@@ -43,7 +42,7 @@
         var actualFontSize = '';
 
         function actualSizes() {
-            actualWidth = $('span.inputFit').width() + 5;
+            actualWidth = $('span.inputFit').width();
             actualHeight = $('span.inputFit').height();
             actualFontSize = parseInt($('span.inputFit').css('font-size'));
         }
@@ -52,26 +51,25 @@
 
             fontSize = actualFontSize * maxWidth / actualWidth * 0.9;
             if (maxWidth < actualWidth) {
-                $('.inputFit').css('font-size', fontSize);
+                $('input.inputFit').css({'font-size': fontSize, 'height' : maxHeight, 'width' : maxWidth});
             } else if (maxWidth > actualWidth) {
                 fontSize = actualFontSize * maxWidth / actualWidth * 0.9;
                 if (fontSize <= parseInt(originalFontSize)) {
-                    $('.inputFit').css('font-size', fontSize);
+                    $('input.inputFit').css({'font-size': fontSize, 'height' : maxHeight, 'width' : maxWidth});
                 }
             }
         }
 
-        $(this).keydown(function (event) {
+        $(this).keydown(function (event) {            
 
-            //Using toUpperCase
-            $('span.inputFit').text($(this).val().toUpperCase());
+            $('span.inputFit').text($(this).val());
             actualSizes();
             resize();
         });
 
         $(this).keyup(function () {
-            //Using toUpperCase
-            $('span.inputFit').text($(this).val().toUpperCase());
+
+            $('span.inputFit').text($(this).val());
             actualSizes();
 
 		if($(this).val() == ''){
@@ -83,3 +81,5 @@
     };
 
 })(jQuery);
+
+$('input').inputFit();
