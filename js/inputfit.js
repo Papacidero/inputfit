@@ -7,26 +7,28 @@
 (function ($) {
 
     $.fn.inputFit = function (options) {
+        
+        var elem = this;
 
         var defaults = {
-            'maxFontSize': 40,
+            'maxFontSize': this.css('font-size'),
             'minFontSize': 5
         };
 
         var options = $.extend({}, defaults, options);
 
 
-        var originalFontSize = $(this).css('font-size');
-        var originalFontFamily = $(this).css('font-family');
-        var originalFontAlignment = $(this).css('text-align');
-        var originalFontWeight = $(this).css('font-weight');
-        var originalTextTransform = $(this).css('text-transform');
-        var maxWidth = $(this).width();
-        var maxHeight = $(this).height();
+        var originalFontSize = elem.css('font-size');
+        var originalFontFamily = elem.css('font-family');
+        var originalFontAlignment = elem.css('text-align');
+        var originalFontWeight = elem.css('font-weight');
+        var originalTextTransform = elem.css('text-transform');
+        var maxWidth = elem.width();
+        var maxHeight = elem.height();
 
-        $(this).addClass('inputFit');
+        elem.addClass('inputFit');
         
-        $(this).after('<span class="inputFit" style="display: none; position: absolute; bottom: 0; left: 0; border: 1px solid gray; float: left;"></span>');
+        elem.after('<span class="inputFit" style="display: none; position: absolute; bottom: 0; left: 0; border: 1px solid gray; float: left;"></span>');
 
         $('span.inputFit').css({
             'font-size': originalFontSize,
@@ -60,20 +62,17 @@
             }
         }
 
-        $(this).keydown(function (event) {            
-
-            $('span.inputFit').text($(this).val());
+        elem.keydown(function (event) {            
+            $('span.inputFit').text(elem.val());
             actualSizes();
             resize();
         });
 
-        $(this).keyup(function () {
-
-            $('span.inputFit').text($(this).val());
+        elem.keyup(function () {
+            $('span.inputFit').text(elem.val());
             actualSizes();
-
-		if($(this).val() == ''){
-			$(this).css('font-size',originalFontSize);
+		if(elem.val() == ''){
+			elem.css('font-size',originalFontSize);
 			}
 
         });
