@@ -57,11 +57,6 @@
 
         $(this).keydown(function (event) {
 
-            //Prevent SpaceBar
-            if (event.keyCode == 32) {
-                event.preventDefault();
-            }
-
             //Using toUpperCase
             $('span.inputFit').text($(this).val().toUpperCase());
             actualSizes();
