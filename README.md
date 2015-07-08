@@ -7,5 +7,5 @@ Makes the typed text fit into the input, resizing it up and down according the t
 Needs Jquery library.
 
 ```javascript
-#('input').inputfit();
+#('input').inputFit();
 ```
