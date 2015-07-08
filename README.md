@@ -9,3 +9,10 @@ Needs Jquery library.
 ```javascript
 #('input').inputFit();
 ```
+
+
+## Sample
+
+See the Sample at JS Fiddle
+
+[https://jsfiddle.net/Papacidero/epa4t689/](https://jsfiddle.net/Papacidero/epa4t689/)
