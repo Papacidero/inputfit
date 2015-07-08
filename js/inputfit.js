@@ -26,7 +26,7 @@
 
         $(this).addClass('inputFit');
         
-        $(this).after('<span class="inputFit" style="position: absolute; bottom: 0; left: 0; border: 1px solid gray; float: left;"></span>');
+        $(this).after('<span class="inputFit" style="display: none; position: absolute; bottom: 0; left: 0; border: 1px solid gray; float: left;"></span>');
 
         $('span.inputFit').css({
             'font-size': originalFontSize,
