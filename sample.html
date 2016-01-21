@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Input Fit Sample</title>
+</head>
+<body>
+    
+    <!-- Your Style Here -->
+    <style media="screen">
+        input {
+            width: 500px;
+            font-size: 100px;
+            text-align: center;
+        }
+
+        /* For Layout purposes only */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f2f2f2;
+
+        }
+    </style>
+    
+    <a href="https://github.com/Papacidero/inputfit"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png"></a>
+    <input type="text" placeholder="Type Here">
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js" charset="utf-8"></script>
+
+    <!-- inputFit -->
+    <script src="js/inputfit.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Call the Input Fit
+            $('input').inputFit();
+        });
+    </script>
+    
+    
+</body>
+</html>

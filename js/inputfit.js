@@ -80,5 +80,3 @@
     };
 
 })(jQuery);
-
-$('input').inputFit();
