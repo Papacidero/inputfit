@@ -13,6 +13,6 @@ Needs Jquery library.
 
 ## Sample
 
-See the Sample at JS Fiddle
+See the Sample
 
 [http://papacidero.github.io/inputfit/](http://papacidero.github.io/inputfit/)
