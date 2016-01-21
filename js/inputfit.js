@@ -25,9 +25,11 @@
         var originalTextTransform = elem.css('text-transform');
         var maxWidth = elem.width();
         var maxHeight = elem.height();
+        var actualWidth = '';
+        var actualHeight = '';
+        var actualFontSize = '';
 
         elem.addClass('inputFit');
-        
         elem.after('<span class="inputFit" style="display: none; position: absolute; bottom: 0; left: 0; border: 1px solid gray; float: left;"></span>');
 
         $('span.inputFit').css({
@@ -38,10 +40,6 @@
             'text-transform': originalTextTransform
         });
 
-
-        var actualWidth = '';
-        var actualHeight = '';
-        var actualFontSize = '';
 
         function actualSizes() {
             actualWidth = $('span.inputFit').width();
@@ -63,13 +61,13 @@
         }
 
         elem.keydown(function (event) {            
-            $('span.inputFit').text(elem.val());
+            $('span.inputFit').html(elem.val().replace(/(\s)/g,"&nbsp;"));
             actualSizes();
             resize();
         });
 
         elem.keyup(function () {
-            $('span.inputFit').text(elem.val());
+            $('span.inputFit').html(elem.val().replace(/(\s)/g,"&nbsp;"));
             actualSizes();
 		if(elem.val() == ''){
 			elem.css('font-size',originalFontSize);
