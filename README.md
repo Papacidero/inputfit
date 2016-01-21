@@ -15,4 +15,4 @@ Needs Jquery library.
 
 See the Sample at JS Fiddle
 
-[https://jsfiddle.net/Papacidero/epa4t689/](https://jsfiddle.net/Papacidero/epa4t689/)
+[http://papacidero.github.io/inputfit/](http://papacidero.github.io/inputfit/)
