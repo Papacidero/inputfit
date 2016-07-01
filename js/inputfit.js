@@ -1,3 +1,5 @@
+'use strict';
+
 /*! Input Fit Plugin - v0.0.1 - 2015-07-08
  * https://github.com/Papacidero/inputfit
  *
@@ -7,7 +9,7 @@
 (function ($) {
 
     $.fn.inputFit = function (options) {
-        
+
         var elem = this;
 
         var defaults = {
@@ -16,7 +18,6 @@
         };
 
         var options = $.extend({}, defaults, options);
-
 
         var originalFontSize = elem.css('font-size');
         var originalFontFamily = elem.css('font-family');
@@ -30,16 +31,7 @@
         var actualFontSize = '';
 
         elem.addClass('inputFit');
-        elem.after('<span class="inputFit" style="display: none; position: absolute; bottom: 0; left: 0; border: 1px solid gray; float: left;"></span>');
-
-        $('span.inputFit').css({
-            'font-size': originalFontSize,
-            'font-family': originalFontFamily,
-            'text-align': originalFontAlignment,
-            'font-weight': originalFontWeight,
-            'text-transform': originalTextTransform
-        });
-
+        elem.after('<span class="inputFit" style="display: none; position: absolute; bottom: 0; left: 0; border: 1px solid gray; float: left; font-size: ' + originalFontSize + '; font-family: ' + originalFontFamily + '; text-align: ' + originalFontAlignment + '; font-weight: ' + originalFontWeight + '; text-transform: ' + originalTextTransform + ';"></span>');
 
         function actualSizes() {
             actualWidth = $('span.inputFit').width();
@@ -48,33 +40,30 @@
         }
 
         function resize() {
-
+            var fontSize = '';
             fontSize = actualFontSize * maxWidth / actualWidth * 0.9;
             if (maxWidth < actualWidth) {
-                $('input.inputFit').css({'font-size': fontSize, 'height' : maxHeight, 'width' : maxWidth});
+                $('input.inputFit').css({ 'font-size': fontSize, 'height': maxHeight, 'width': maxWidth });
             } else if (maxWidth > actualWidth) {
                 fontSize = actualFontSize * maxWidth / actualWidth * 0.9;
                 if (fontSize <= parseInt(originalFontSize)) {
-                    $('input.inputFit').css({'font-size': fontSize, 'height' : maxHeight, 'width' : maxWidth});
+                    $('input.inputFit').css({ 'font-size': fontSize, 'height': maxHeight, 'width': maxWidth });
                 }
             }
         }
 
-        elem.keydown(function (event) {            
-            $('span.inputFit').html(elem.val().replace(/(\s)/g,"&nbsp;"));
+        elem.keydown(function (event) {
+            $('span.inputFit').html(elem.val().replace(/(\s)/g, "&nbsp;"));
             actualSizes();
             resize();
         });
 
         elem.keyup(function () {
-            $('span.inputFit').html(elem.val().replace(/(\s)/g,"&nbsp;"));
+            $('span.inputFit').html(elem.val().replace(/(\s)/g, "&nbsp;"));
             actualSizes();
-		if(elem.val() == ''){
-			elem.css('font-size',originalFontSize);
-			}
-
+            if (elem.val() === '') {
+                elem.css('font-size', originalFontSize);
+            }
         });
-
     };
-
 })(jQuery);

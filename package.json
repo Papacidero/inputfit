@@ -1,0 +1,33 @@
+{
+    "name": "inputfit",
+    "version": "1.0.0",
+    "description": "Makes the typed text, fit into the input, resizing it up and down according the text size",
+    "main": "js/inputfit.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Papacidero/inputfit.git"
+    },
+    "keywords": [
+        "input",
+        "jquery",
+        "plugin",
+        "fit"
+    ],
+    "author": "Carlos Eduardo Papacidero",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Papacidero/inputfit/issues"
+    },
+    "homepage": "https://github.com/Papacidero/inputfit#readme",
+    "devDependencies": {
+        "babel-cli": "^6.10.1",
+        "babel-preset-es2015": "^6.9.0"
+    },
+    "scripts": {
+         "build": "babel es6 -wd js"
+    }
+
+}
