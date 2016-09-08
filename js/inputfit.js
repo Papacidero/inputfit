@@ -19,38 +19,40 @@
 
         var options = $.extend({}, defaults, options);
 
-        var originalFontSize = elem.css('font-size');
-        var originalFontFamily = elem.css('font-family');
-        var originalFontAlignment = elem.css('text-align');
-        var originalFontWeight = elem.css('font-weight');
-        var originalTextTransform = elem.css('text-transform');
-        var maxWidth = elem.width();
-        var maxHeight = elem.height();
-        var actualWidth = '';
-        var actualHeight = '';
-        var actualFontSize = '';
+        var defaultProperties = {
+            originalFontSize: elem.css('font-size'),
+            originalFontFamily: elem.css('font-family'),
+            originalFontAlignment: elem.css('text-align'),
+            originalFontWeight: elem.css('font-weight'),
+            originalTextTransform: elem.css('text-transform'),
+            maxWidth: elem.width(),
+            maxHeight: elem.height(),
+            actualWidth: '',
+            actualHeight: '',
+            actualFontSize: ''
+        };
 
         elem.addClass('inputFit');
-        elem.after('<span class="inputFit" style="display: none; position: absolute; bottom: 0; left: 0; border: 1px solid gray; float: left; font-size: ' + originalFontSize + '; font-family: ' + originalFontFamily + '; text-align: ' + originalFontAlignment + '; font-weight: ' + originalFontWeight + '; text-transform: ' + originalTextTransform + ';"></span>');
+        elem.after('<span \n                    class="inputFit"\n                    style="\n                    display: none;\n                    position: absolute; bottom: 0;\n                    left: 0; border: 1px solid gray;\n                    float: left;\n                    font-size: ' + defaultProperties.originalFontSize + ';\n                    font-family: ' + defaultProperties.originalFontFamily + ';\n                    text-align: ' + defaultProperties.originalFontAlignment + ';\n                    font-weight: ' + defaultProperties.originalFontWeight + ';\n                    text-transform: ' + defaultProperties.originalTextTransform + ';">\n            </span>');
 
-        function actualSizes() {
-            actualWidth = $('span.inputFit').width();
-            actualHeight = $('span.inputFit').height();
-            actualFontSize = parseInt($('span.inputFit').css('font-size'));
-        }
+        var actualSizes = function actualSizes() {
+            defaultProperties.actualWidth = $('span.inputFit').width();
+            defaultProperties.actualHeight = $('span.inputFit').height();
+            defaultProperties.actualFontSize = parseInt($('span.inputFit').css('font-size'));
+        };
 
-        function resize() {
+        var resize = function resize() {
             var fontSize = '';
-            fontSize = actualFontSize * maxWidth / actualWidth * 0.9;
-            if (maxWidth < actualWidth) {
-                $('input.inputFit').css({ 'font-size': fontSize, 'height': maxHeight, 'width': maxWidth });
-            } else if (maxWidth > actualWidth) {
-                fontSize = actualFontSize * maxWidth / actualWidth * 0.9;
-                if (fontSize <= parseInt(originalFontSize)) {
-                    $('input.inputFit').css({ 'font-size': fontSize, 'height': maxHeight, 'width': maxWidth });
+            fontSize = defaultProperties.actualFontSize * defaultProperties.maxWidth / defaultProperties.actualWidth * 0.9;
+            if (defaultProperties.maxWidth < defaultProperties.actualWidth) {
+                $('input.inputFit').css({ 'font-size': fontSize, 'height': defaultProperties.maxHeight, 'width': defaultProperties.maxWidth });
+            } else if (defaultProperties.maxWidth > defaultProperties.actualWidth) {
+                fontSize = defaultProperties.actualFontSize * defaultProperties.maxWidth / defaultProperties.actualWidth * 0.9;
+                if (fontSize <= parseInt(defaultProperties.originalFontSize)) {
+                    $('input.inputFit').css({ 'font-size': fontSize, 'height': defaultProperties.maxHeight, 'width': defaultProperties.maxWidth });
                 }
             }
-        }
+        };
 
         elem.keydown(function (event) {
             $('span.inputFit').html(elem.val().replace(/(\s)/g, "&nbsp;"));
@@ -62,7 +64,7 @@
             $('span.inputFit').html(elem.val().replace(/(\s)/g, "&nbsp;"));
             actualSizes();
             if (elem.val() === '') {
-                elem.css('font-size', originalFontSize);
+                elem.css('font-size', defaultProperties.originalFontSize);
             }
         });
     };

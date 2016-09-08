@@ -8,48 +8,63 @@
 
     $.fn.inputFit = function (options) {
         
-        let elem = this;
+        var elem = this;
 
-        let defaults = {
+        var defaults = {
             'maxFontSize': this.css('font-size'),
             'minFontSize': 5
         };
 
         var options = $.extend({}, defaults, options);
 
-
-        let originalFontSize = elem.css('font-size');
-        let originalFontFamily = elem.css('font-family');
-        let originalFontAlignment = elem.css('text-align');
-        let originalFontWeight = elem.css('font-weight');
-        let originalTextTransform = elem.css('text-transform');
-        let maxWidth = elem.width();
-        let maxHeight = elem.height();
-        let actualWidth = '';
-        let actualHeight = '';
-        let actualFontSize = '';
+        const defaultProperties = {
+            originalFontSize : elem.css('font-size'),
+            originalFontFamily : elem.css('font-family'),
+            originalFontAlignment : elem.css('text-align'),
+            originalFontWeight : elem.css('font-weight'),
+            originalTextTransform : elem.css('text-transform'),
+            maxWidth : elem.width(),
+            maxHeight : elem.height(),
+            actualWidth : '',
+            actualHeight : '',
+            actualFontSize : ''
+        };
 
         elem.addClass('inputFit');
-        elem.after(`<span class="inputFit" style="display: none; position: absolute; bottom: 0; left: 0; border: 1px solid gray; float: left; font-size: ${originalFontSize}; font-family: ${originalFontFamily}; text-align: ${originalFontAlignment}; font-weight: ${originalFontWeight}; text-transform: ${originalTextTransform};"></span>`);
+        elem.after(
+            `<span 
+                    class="inputFit"
+                    style="
+                    display: none;
+                    position: absolute; bottom: 0;
+                    left: 0; border: 1px solid gray;
+                    float: left;
+                    font-size: ${defaultProperties.originalFontSize};
+                    font-family: ${defaultProperties.originalFontFamily};
+                    text-align: ${defaultProperties.originalFontAlignment};
+                    font-weight: ${defaultProperties.originalFontWeight};
+                    text-transform: ${defaultProperties.originalTextTransform};">
+            </span>`
+        );
 
-        function actualSizes() {
-            actualWidth = $('span.inputFit').width();
-            actualHeight = $('span.inputFit').height();
-            actualFontSize = parseInt($('span.inputFit').css('font-size'));
-        }
+        var actualSizes = ()=> {
+            defaultProperties.actualWidth = $('span.inputFit').width();
+            defaultProperties.actualHeight = $('span.inputFit').height();
+            defaultProperties.actualFontSize = parseInt($('span.inputFit').css('font-size'));
+        };
 
-        function resize() {
+        var resize = ()=> {
             let fontSize = '';
-            fontSize = actualFontSize * maxWidth / actualWidth * 0.9;
-            if (maxWidth < actualWidth) {
-                $('input.inputFit').css({'font-size': fontSize, 'height' : maxHeight, 'width' : maxWidth});
-            } else if (maxWidth > actualWidth) {
-                fontSize = actualFontSize * maxWidth / actualWidth * 0.9;
-                if (fontSize <= parseInt(originalFontSize)) {
-                    $('input.inputFit').css({'font-size': fontSize, 'height' : maxHeight, 'width' : maxWidth});
+            fontSize = defaultProperties.actualFontSize * defaultProperties.maxWidth / defaultProperties.actualWidth * 0.9;
+            if (defaultProperties.maxWidth < defaultProperties.actualWidth) {
+                $('input.inputFit').css({'font-size': fontSize, 'height' : defaultProperties.maxHeight, 'width' : defaultProperties.maxWidth});
+            } else if (defaultProperties.maxWidth > defaultProperties.actualWidth) {
+                fontSize = defaultProperties.actualFontSize * defaultProperties.maxWidth / defaultProperties.actualWidth * 0.9;
+                if (fontSize <= parseInt(defaultProperties.originalFontSize)) {
+                    $('input.inputFit').css({'font-size': fontSize, 'height' : defaultProperties.maxHeight, 'width' : defaultProperties.maxWidth});
                 }
             }
-        }
+        };
 
         elem.keydown(function (event) {            
             $('span.inputFit').html(elem.val().replace(/(\s)/g,"&nbsp;"));
@@ -61,7 +76,7 @@
             $('span.inputFit').html(elem.val().replace(/(\s)/g,"&nbsp;"));
             actualSizes();
 		if(elem.val() === ''){
-			elem.css('font-size',originalFontSize);
+			elem.css('font-size',defaultProperties.originalFontSize);
 			}
 
         });
