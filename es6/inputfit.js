@@ -33,17 +33,17 @@
         elem.addClass('inputFit');
         elem.after(
             `<span 
-                    class="inputFit"
-                    style="
-                    display: none;
-                    position: absolute; bottom: 0;
-                    left: 0; border: 1px solid gray;
-                    float: left;
-                    font-size: ${defaultProperties.originalFontSize};
-                    font-family: ${defaultProperties.originalFontFamily};
-                    text-align: ${defaultProperties.originalFontAlignment};
-                    font-weight: ${defaultProperties.originalFontWeight};
-                    text-transform: ${defaultProperties.originalTextTransform};">
+                class="inputFit"
+                style="
+                display: none;
+                position: absolute; bottom: 0;
+                left: 0; border: 1px solid gray;
+                float: left;
+                font-size: ${defaultProperties.originalFontSize};
+                font-family: ${defaultProperties.originalFontFamily};
+                text-align: ${defaultProperties.originalFontAlignment};
+                font-weight: ${defaultProperties.originalFontWeight};
+                text-transform: ${defaultProperties.originalTextTransform};">
             </span>`
         );
 
